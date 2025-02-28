@@ -15,7 +15,7 @@ export const metadata = {
   title: "Little Lemon App",
   description: "Little Lemon App is a restourant app",
   openGraph: {
-    type: "Little Lemon",
+    type: "website",
     locale: "en_US",
     url: "https://example.com",
     site_name: "Little Lemon App",
