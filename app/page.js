@@ -1,37 +1,36 @@
+'use client';
+
 import styles from "./page.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 export default function Home() {
+      const [isNavOpen, setIsNavOpen] = useState(false);
+      const toggleNav = () => {
+        setIsNavOpen(!isNavOpen);
+      };
   return (
     <>
     <nav className={styles.nav}>
+        <div className={styles.logo}>
       <div className={styles.logo}>
+          <img src="/Logo.svg" alt="Little Lemon" width={150} height={50} />
       <img src="/Logo.svg" alt="Little Lemon" width={150} height={50} />
+        </div>
       </div>
-
-      <ul className={styles.navLinks}>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/about">About</a>
-        </li>
-        <li>
-          <a href="/menu">Menu</a>
-        </li>
-        <li>
-          <a href="/reservations">Reservations</a>
-        </li>
-        <li>
-          <a href="/order">Order Online</a>
-        </li>
-        <li>
-          <a href="/login">Login</a>
-        </li>
-          </ul>
-    </nav>
+        <button className={styles.menuButton} onClick={toggleNav}>
+          ☰
+        </button>
+        <ul className={`${styles.navLinks} ${isNavOpen ? styles.active : ""}`}>
+          <li><a href="/">Home</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/menu">Menu</a></li>
+          <li><a href="/reservations">Reservations</a></li>
+          <li><a href="/order">Order Online</a></li>
+          <li><a href="/login">Login</a></li>
+        </ul>
+      </nav>
 
     <main className={styles.hero}>
       <div className={styles.heroText}>
