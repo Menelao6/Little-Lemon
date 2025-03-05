@@ -1,0 +1,16 @@
+.reservationsPage {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.reservationsPage h1 {
+    margin-bottom: 1rem;
+    color: #495e57;
+}
+
+.reservationsPage p {
+    margin-bottom: 2rem;
+    color: #333;
+}
