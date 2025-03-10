@@ -25,7 +25,7 @@ export default function BookingForm({ availableTimes, dispatchTimes }) {
     return (
         <>
         <form className={styles.bookingForm} onSubmit={handleSubmit}>
-            <label htmlFor="res-date">Chose Date</label>
+            <label htmlFor="res-date">Choose Date</label>
             <input
                 type="date"
                 id="res-date"
@@ -33,7 +33,7 @@ export default function BookingForm({ availableTimes, dispatchTimes }) {
                 onChange={handleDateChange}
                 required
                 />
-            <label htmlFor="res-time">Chose Time</label>
+            <label htmlFor="res-time">Choose Time</label>
             <select
                 id="res-time"
                 value={time}
