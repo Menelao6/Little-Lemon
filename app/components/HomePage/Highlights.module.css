@@ -1,0 +1,64 @@
+.highlights {
+  padding: 4rem 2rem;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.highlightHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.highlightHeader h2 {
+  flex: 1;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.highlightHeader .btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.highlightMenu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  width: 100%;
+}
+
+.highlightItem {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  min-width: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.highlightItem:hover {
+  transform: translateY(-5px);
+}
+
+.highlightItem img {
+  width: 100%;
+  border-radius: 16px;
+}
+
+@media (max-width: 1024px) {
+  .highlightMenu {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .highlightMenu {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,24 @@
+.confirmedBooking {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.);
+  margin: 2rem auto;
+    max-width: 400px;
+
+}
+
+.confirmedBooking h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.confirmedBooking p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
