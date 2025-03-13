@@ -5,6 +5,7 @@ import BookingForm from "../components/BookingForm/BookingForm.js";
 import Footer from "../components/HomePage/Footer.js";
 import styles from "./ReservationsPage.module.css";
 import { useReducer, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 function updateTimes(state, action) {
   switch (action.type) {
@@ -57,12 +58,25 @@ export default function Reservations() {
   const [availableTimes, dispatchTimes] = useReducer(updateTimes, [], initializeState);
   const [isAPIReady, setIsAPIReady] = useState(true); // Since API is integrated, it's immediately ready
   const [selectedDate, setSelectedDate] = useState(new Date()); // Default to today's date
+  const router = useRouter();
 
   useEffect(() => {
     // Fetch available times based on the selected date
     const times = fetchAPI(selectedDate);
     dispatchTimes({ type: "UPDATE_TIMES", payload: times });
   }, [selectedDate]);
+
+  const submitForm = async (formData) => {
+    // Submit booking form
+    const success = submitAPI(formData);
+    if (success) {
+      // Redirect to confirmation page
+      const queryString = new URLSearchParams(formData).toString();
+      router.push(`/confirmed-booking?${queryString}`);
+    } else {
+      alert("Failed to submit booking. Please try again.");
+    }
+  };
 
   return (
     <>
@@ -74,8 +88,8 @@ export default function Reservations() {
           <BookingForm 
             availableTimes={availableTimes} 
             dispatchTimes={dispatchTimes} 
-            fetchAPI={fetchAPI} 
-            submitAPI={submitAPI} 
+            fetchAPI={fetchAPI}
+            submitForm={submitForm} 
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
           />

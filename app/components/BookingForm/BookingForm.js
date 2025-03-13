@@ -3,54 +3,32 @@
 import { useState, useEffect } from "react";
 import styles from "./BookingForm.module.css";
 
-export default function BookingForm({ availableTimes, dispatchTimes, fetchAPI, submitAPI }) {
-  const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // Default to today
+export default function BookingForm({ availableTimes, dispatchTimes, fetchAPI, submitForm, selectedDate, setSelectedDate }) {
+  const [date, setDate] = useState(selectedDate.toISOString().split("T")[0]); // Default to today
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState("");
 
   useEffect(() => {
     if (typeof fetchAPI === "function") {
-      console.log("Fetching available times for date:", date);
-      const times = fetchAPI(date);
-      console.log("Available times:", times);
+      const times = fetchAPI(new Date(date));
       dispatchTimes({ type: "UPDATE_TIMES", times });
-    } else {
-      console.error("fetchAPI is not defined");
     }
   }, [date, fetchAPI, dispatchTimes]);
 
   const handleDateChange = (e) => {
-    const selectedDate = e.target.value;
-    setDate(selectedDate);
-
-    if (typeof fetchAPI === "function") {
-      console.log("Fetching available times for date:", selectedDate);
-      const times = fetchAPI(selectedDate);
-      console.log("Available times:", times);
-      dispatchTimes({ type: "UPDATE_TIMES", times });
-    } else {
-      console.error("fetchAPI is not defined");
-    }
+    const selectedDate = new Date(e.target.value);
+    setDate(selectedDate.toISOString().split("T")[0]);
+    setSelectedDate(selectedDate);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = { date, time, guests, occasion };
-    console.log("Form data:", formData);
-
-    if (typeof submitAPI === "function") {
-      console.log("Calling submitAPI...");
-      const success = await submitAPI(formData);
-      console.log("Submission result:", success);
-
-      if (success) {
-        alert(`Booking confirmed for ${guests} guests on ${date} at ${time} for ${occasion}`);
-      } else {
-        alert("Failed to submit booking. Please try again.");
-      }
+    if (typeof submitForm === "function") {
+    await submitForm(formData);
     } else {
-      console.error("submitAPI is not defined");
+      console.error("submitForm is not defined");
     }
   };
 
